@@ -25,18 +25,13 @@ session_start();
         ?>
     </div>
     <?php
-    $plans = null;
+    $plans = [];
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-        if ($_POST['PLAN1']) {
-            $plans = $_POST['PLAN1'];
-            echo "<h1>{$plans} added to cart</h1>";
-        } elseif ($_POST['PLAN2']) {
-            $plans = $_POST['PLAN2'];
-            echo "<h1>{$plans} added to cart</h1>";
-        } elseif ($_POST['PLAN3']) {
-            $plans = $_POST['PLAN3'];
-            echo "<h1>{$plans} added to cart</h1>";
+        foreach ($cartItems->getFromCart() as $item) {
+            if (isset($_POST[$item->getName()])) {
+                array_push($plans, ["name" => isset($_POST[$item->getName()]), "price" => isset($_POST[$item->getPrice()])]);
+                echo "<h1>{$item->getName()} with price {$item->getPrice()} added to cart</h1>";
+            }
         }
     }
     ?>
