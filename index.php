@@ -3,7 +3,7 @@ include_once("plan.php");
 include_once("carts.php");
 include_once("createCarts.php");
 include_once("renderPlan.php");
-session_start();
+//session_start();
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +29,7 @@ session_start();
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         foreach ($cartItems->getFromCart() as $item) {
             if (isset($_POST[$item->getName()])) {
-                array_push($plans, ["name" => isset($_POST[$item->getName()]), "price" => isset($_POST[$item->getPrice()])]);
+                //array_push($plans, ["name" => isset($_POST[$item->getName()]), "price" => isset($_POST[$item->getPrice()])]);
                 echo "<h1>{$item->getName()} with price {$item->getPrice()} added to cart</h1>";
             }
         }
